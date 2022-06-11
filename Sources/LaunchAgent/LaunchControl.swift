@@ -200,7 +200,8 @@ extension LaunchControl {
         }
         
         let arguments = ["bootstrap", "gui/\(uid)", agentURL.path]
-        Process.launchedProcess(launchPath: LaunchControl.launchctl, arguments: arguments)
+        let process = Process.launchedProcess(launchPath: LaunchControl.launchctl, arguments: arguments)
+        process.waitUntilExit()
     }
     
     /// Run `launchctl bootout` on the agent
@@ -213,7 +214,8 @@ extension LaunchControl {
         }
         
         let arguments = ["bootout", "gui/\(uid)", agentURL.path]
-        Process.launchedProcess(launchPath: LaunchControl.launchctl, arguments: arguments)
+        let process = Process.launchedProcess(launchPath: LaunchControl.launchctl, arguments: arguments)
+        process.waitUntilExit()
     }
     
     /// Retreives the status of the LaunchAgent from `launchctl`
